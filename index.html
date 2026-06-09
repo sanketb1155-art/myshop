@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contractor Manager Pro</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F172A">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toast-container"></div>
+
+<header class="topbar">
+    <h1>🏗️ Contractor Manager</h1>
+    <div id="user-info">Loading...</div>
+</header>
+
+<div class="container">
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="page active">
+        <div class="dashboard-grid">
+            <div class="card premium-card">
+                <h3>Total Workers</h3>
+                <h2 id="total-workers">0</h2>
+            </div>
+            <div class="card premium-card">
+                <h3>Aaj Ka Advance</h3>
+                <h2 id="today-advance">₹0</h2>
+            </div>
+            <div class="card premium-card">
+                <h3>Month Advance</h3>
+                <h2 id="month-advance">₹0</h2>
+            </div>
+            <div class="card premium-card">
+                <h3>Total Advance</h3>
+                <h2 id="total-advance">₹0</h2>
+            </div>
+        </div>
+
+        <h2 class="section-title">📅 Aaj Ka Hisab</h2>
+        <div id="recent-transactions"></div>
+    </div>
+
+    <!-- WORKERS -->
+    <div id="workers" class="page">
+        <div class="search-bar">
+            <input type="text" id="worker-search" placeholder="🔍 Worker naam se search karein..." onkeyup="searchWorkers()">
+        </div>
+        <button class="btn-primary" onclick="showAddWorkerModal()">
+            + Naya Worker Add Karein
+        </button>
+        <div id="workers-list"></div>
+    </div>
+
+    <!-- RECORDS -->
+    <div id="records" class="page">
+        <h2 class="section-title">📖 Poora Record & History</h2>
+        <div id="records-list"></div>
+    </div>
+
+    <!-- REPORTS -->
+    <div id="reports" class="page">
+        <h2 class="section-title">📊 Monthly Report</h2>
+        <div id="monthly-report"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="settings" class="page">
+        <h2 class="section-title">⚙️ Settings</h2>
+        <button onclick="exportData()" class="btn">📤 Export Backup</button>
+        <button onclick="exportCSV()" class="btn">📊 Export CSV</button>
+        <button onclick="document.getElementById('import-file').click()" class="btn">📥 Import Backup</button>
+        <button onclick="logout()" class="btn-danger">Logout</button>
+    </div>
+
+</div>
+
+<!-- Modals (same as before) -->
+<div id="add-worker-modal" class="modal">
+    <div class="modal-content">
+        <h2>Naya Worker Add Karein</h2>
+        <input type="text" id="worker-name" placeholder="Worker Ka Naam">
+        <input type="text" id="worker-mobile" placeholder="Mobile Number">
+        <input type="number" id="worker-salary" placeholder="Monthly Salary (₹)">
+        <button onclick="addWorker()" class="btn-primary">Save Worker</button>
+        <button onclick="closeModal()" class="btn">Cancel</button>
+    </div>
+</div>
+
+<div id="add-entry-modal" class="modal">
+    <div class="modal-content">
+        <h2>Advance Entry</h2>
+        <select id="worker-select"></select>
+        <input type="number" id="amount" placeholder="Amount ₹">
+        <input type="date" id="tx-date">
+        <textarea id="note" placeholder="Kyu liya tha? (Reason)"></textarea>
+        <button onclick="saveAdvance()" class="btn-primary">Save Advance</button>
+        <button onclick="closeModal()" class="btn">Cancel</button>
+    </div>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+    <div onclick="showPage('dashboard')" class="nav-item active">🏠<span>Home</span></div>
+    <div onclick="showPage('workers')" class="nav-item">👷<span>Workers</span></div>
+    <div onclick="showAddEntry()" class="nav-item fab">💰</div>
+    <div onclick="showPage('records')" class="nav-item">📖<span>Records</span></div>
+    <div onclick="showPage('reports')" class="nav-item">📊<span>Report</span></div>
+</nav>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<script src="firebase.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
