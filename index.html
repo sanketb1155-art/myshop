@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contractor Manager Pro</title>
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#111827">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <h1>Contractor Manager Pro</h1>
+    <div id="user-info">Loading...</div>
+</header>
+
+<div class="container">
+
+    <!-- DASHBOARD -->
+
+    <div id="dashboard" class="page active">
+
+        <div class="dashboard-grid">
+
+            <div class="card">
+                <h3>Total Workers</h3>
+                <h2 id="total-workers">0</h2>
+            </div>
+
+            <div class="card">
+                <h3>Today's Advance</h3>
+                <h2 id="today-advance">₹0</h2>
+            </div>
+
+            <div class="card">
+                <h3>Month Advance</h3>
+                <h2 id="month-advance">₹0</h2>
+            </div>
+
+            <div class="card">
+                <h3>Total Advance</h3>
+                <h2 id="total-advance">₹0</h2>
+            </div>
+
+        </div>
+
+        <h2>Recent Transactions</h2>
+
+        <div id="recent-transactions"></div>
+
+    </div>
+
+    <!-- WORKERS -->
+
+    <div id="workers" class="page">
+
+        <input
+            type="text"
+            id="worker-search"
+            placeholder="Search Worker..."
+            onkeyup="searchWorkers()"
+        >
+
+        <button
+            class="btn-primary"
+            onclick="showAddWorkerModal()"
+        >
+            + Add Worker
+        </button>
+
+        <div id="workers-list"></div>
+
+    </div>
+
+    <!-- REPORTS -->
+
+    <div id="reports" class="page">
+
+        <select id="month-select"
+                onchange="loadMonthlyReport()">
+        </select>
+
+        <div id="monthly-report"></div>
+
+    </div>
+
+    <!-- SETTINGS -->
+
+    <div id="settings" class="page">
+
+        <button onclick="exportData()" class="btn">
+            Export JSON
+        </button>
+
+        <button onclick="exportCSV()" class="btn">
+            Export CSV
+        </button>
+
+        <input
+            type="file"
+            id="import-file"
+            accept=".json"
+            hidden
+        >
+
+        <button
+            onclick="document.getElementById('import-file').click()"
+            class="btn"
+        >
+            Import JSON
+        </button>
+
+        <button
+            onclick="logout()"
+            class="btn-danger"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ADD WORKER MODAL -->
+
+<div id="add-worker-modal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>Add Worker</h2>
+
+        <input
+            type="text"
+            id="worker-name"
+            placeholder="Worker Name"
+        >
+
+        <input
+            type="text"
+            id="worker-mobile"
+            placeholder="Mobile Number"
+        >
+
+        <input
+            type="number"
+            id="worker-salary"
+            placeholder="Monthly Salary"
+        >
+
+        <button
+            onclick="addWorker()"
+            class="btn-primary"
+        >
+            Save Worker
+        </button>
+
+        <button
+            onclick="closeModal()"
+            class="btn"
+        >
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ADD ADVANCE MODAL -->
+
+<div id="add-entry-modal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>Add Advance</h2>
+
+        <select id="worker-select"></select>
+
+        <input
+            type="number"
+            id="amount"
+            placeholder="Amount"
+        >
+
+        <input
+            type="date"
+            id="tx-date"
+        >
+
+        <textarea
+            id="note"
+            placeholder="Note"
+        ></textarea>
+
+        <button
+            onclick="saveAdvance()"
+            class="btn-primary"
+        >
+            Save Advance
+        </button>
+
+        <button
+            onclick="closeModal()"
+            class="btn"
+        >
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+    <div onclick="showPage('dashboard')" class="nav-item">
+        🏠
+        <span>Home</span>
+    </div>
+
+    <div onclick="showPage('workers')" class="nav-item">
+        👷
+        <span>Workers</span>
+    </div>
+
+    <div onclick="showAddEntry()" class="nav-item fab">
+        💰
+    </div>
+
+    <div onclick="showPage('reports')" class="nav-item">
+        📊
+        <span>Reports</span>
+    </div>
+
+    <div onclick="showPage('settings')" class="nav-item">
+        ⚙️
+        <span>Settings</span>
+    </div>
+
+</nav>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<script src="firebase.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
