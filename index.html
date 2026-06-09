@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HisabBook • Contractor</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F172A">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="toast-container"></div>
+
+    <header class="topbar">
+        <h1>💰 HisabBook</h1>
+        <div id="user-info"></div>
+    </header>
+
+    <div class="container">
+        <!-- DASHBOARD -->
+        <div id="dashboard" class="page active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Workers</h3>
+                    <h2 id="total-workers">0</h2>
+                </div>
+                <div class="stat-card">
+                    <h3>Aaj Ka Hisab</h3>
+                    <h2 id="today-advance">₹0</h2>
+                </div>
+                <div class="stat-card">
+                    <h3>Month Hisab</h3>
+                    <h2 id="month-advance">₹0</h2>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Advance</h3>
+                    <h2 id="total-advance">₹0</h2>
+                </div>
+            </div>
+            <h2>Aaj Ka Record</h2>
+            <div id="recent-transactions"></div>
+        </div>
+
+        <!-- WORKERS -->
+        <div id="workers" class="page">
+            <input type="text" id="worker-search" placeholder="Worker naam search karein..." onkeyup="loadWorkers()">
+            <button class="btn-primary" onclick="showAddWorkerModal()">+ Naya Worker</button>
+            <div id="workers-list"></div>
+        </div>
+
+        <!-- RECORDS -->
+        <div id="records" class="page">
+            <h2>Poora Hisab History</h2>
+            <div id="records-list"></div>
+        </div>
+
+        <!-- REPORTS -->
+        <div id="reports" class="page">
+            <h2>Monthly Report</h2>
+            <div id="monthly-report"></div>
+        </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+        <div onclick="showPage('dashboard')" class="nav-item">🏠 Home</div>
+        <div onclick="showPage('workers')" class="nav-item">👷 Workers</div>
+        <div onclick="showAddEntry()" class="nav-item fab">💰</div>
+        <div onclick="showPage('records')" class="nav-item">📖 Records</div>
+        <div onclick="showPage('reports')" class="nav-item">📊 Report</div>
+    </nav>
+
+    <!-- Modals -->
+    <div id="add-worker-modal" class="modal">
+        <div class="modal-content">
+            <h2>Naya Worker</h2>
+            <input type="text" id="worker-name" placeholder="Worker Ka Naam">
+            <button onclick="addWorker()" class="btn-primary">Add Worker</button>
+            <button onclick="closeModal()" class="btn">Cancel</button>
+        </div>
+    </div>
+
+    <div id="add-entry-modal" class="modal">
+        <div class="modal-content">
+            <h2>Hisab Entry</h2>
+            <select id="worker-select"></select>
+            <input type="number" id="amount" placeholder="Amount ₹">
+            <select id="entry-type">
+                <option value="advance">Advance Diya</option>
+                <option value="payment">Payment Kiya (Settlement)</option>
+            </select>
+            <input type="date" id="tx-date">
+            <textarea id="note" placeholder="Kyu diya / kya kaam ke liye..."></textarea>
+            <button onclick="saveEntry()" class="btn-primary">Save</button>
+            <button onclick="closeModal()" class="btn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script src="firebase.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
