@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HisabBook Pro</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0F172A">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="toast-container"></div>
+
+    <header class="topbar">
+        <h1>HisabBook Pro</h1>
+        <div id="user-info"></div>
+    </header>
+
+    <div class="container">
+        <!-- Dashboard -->
+        <div id="dashboard" class="page active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Workers</h3>
+                    <h2 id="total-workers">0</h2>
+                </div>
+                <div class="stat-card">
+                    <h3>Aaj Ka Hisab</h3>
+                    <h2 id="today-advance">₹0</h2>
+                </div>
+                <div class="stat-card">
+                    <h3>Month Total</h3>
+                    <h2 id="month-advance">₹0</h2>
+                </div>
+                <div class="stat-card">
+                    <h3>Grand Total</h3>
+                    <h2 id="total-advance">₹0</h2>
+                </div>
+            </div>
+            <h2 class="section-title">Aaj Ka Record</h2>
+            <div id="recent-transactions"></div>
+        </div>
+
+        <!-- Workers -->
+        <div id="workers" class="page">
+            <div class="search-box">
+                <input type="text" id="worker-search" placeholder="Worker naam search karein..." onkeyup="loadWorkers()">
+            </div>
+            <button class="btn-primary" onclick="showAddWorkerModal()">+ Naya Worker Add Karein</button>
+            <div id="workers-list"></div>
+        </div>
+
+        <!-- Records -->
+        <div id="records" class="page">
+            <h2 class="section-title">Poora Hisab History</h2>
+            <div id="records-list"></div>
+        </div>
+
+        <!-- Reports -->
+        <div id="reports" class="page">
+            <h2 class="section-title">Monthly Report</h2>
+            <div id="monthly-report"></div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div onclick="showPage('dashboard')" class="nav-item active">🏠<span>Home</span></div>
+        <div onclick="showPage('workers')" class="nav-item">👷<span>Workers</span></div>
+        <div onclick="showAddEntry()" class="nav-item fab">💰</div>
+        <div onclick="showPage('records')" class="nav-item">📖<span>Records</span></div>
+        <div onclick="showPage('reports')" class="nav-item">📊<span>Report</span></div>
+    </nav>
+
+    <!-- Add Worker Modal -->
+    <div id="add-worker-modal" class="modal">
+        <div class="modal-content">
+            <h2>Naya Worker</h2>
+            <input type="text" id="worker-name" placeholder="Worker ka naam likho">
+            <button onclick="addWorker()" class="btn-primary">Add Worker</button>
+            <button onclick="closeModal()" class="btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Add Entry Modal -->
+    <div id="add-entry-modal" class="modal">
+        <div class="modal-content">
+            <h2>Hisab Entry</h2>
+            <select id="worker-select"></select>
+            <input type="number" id="amount" placeholder="Amount ₹">
+            <input type="date" id="tx-date">
+            <textarea id="note" placeholder="Kyu diya tha?"></textarea>
+            <button onclick="saveAdvance()" class="btn-primary">Save Entry</button>
+            <button onclick="closeModal()" class="btn">Cancel</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script src="firebase.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
