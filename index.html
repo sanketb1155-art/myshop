@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    Contractor Manager Pro
+  </title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <div>
+
+      <h1>
+        🏗 Contractor Manager
+      </h1>
+
+      <small id="today-date"></small>
+
+    </div>
+
+  </header>
+
+  <!-- MAIN -->
+
+  <main id="main-content">
+
+  </main>
+
+  <!-- BOTTOM NAV -->
+
+  <nav class="bottom-nav">
+
+    <button
+      class="nav-btn active"
+      onclick="navigateTo('dashboard')"
+    >
+      <span>🏠</span>
+      <small>Home</small>
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="navigateTo('workers')"
+    >
+      <span>👷</span>
+      <small>Workers</small>
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="navigateTo('attendance')"
+    >
+      <span>📅</span>
+      <small>Attendance</small>
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="navigateTo('advance')"
+    >
+      <span>💰</span>
+      <small>Advance</small>
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="navigateTo('reports')"
+    >
+      <span>📊</span>
+      <small>Reports</small>
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="navigateTo('settings')"
+    >
+      <span>⚙️</span>
+      <small>Settings</small>
+    </button>
+
+  </nav>
+
+</div>
+
+<!-- TOAST -->
+
+<div
+  id="toast"
+  class="toast"
+>
+</div>
+
+<!-- MODAL -->
+
+<div
+  id="modal"
+  class="modal"
+>
+
+  <div
+    id="modal-content"
+    class="modal-content"
+  >
+
+  </div>
+
+</div>
+
+<!-- LOADER -->
+
+<div
+  id="loader"
+  class="loader hidden"
+>
+
+  <div class="spinner"></div>
+
+</div>
+
+<script src="firebase.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
