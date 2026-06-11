@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+
+  <title>AI Contractor Manager Pro V3.0</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+  <!-- Loading Screen -->
+
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loader"></div>
+    <h2>AI Contractor Manager</h2>
+    <p>Loading Workspace...</p>
+  </div>
+
+  <!-- App Container -->
+
+  <div class="app-container" id="appContainer">
+
+    <!-- Top Header -->
+
+    <header class="top-header">
+
+      <div>
+        <h2 id="companyTitle">
+          Contractor Manager
+        </h2>
+
+        <span id="todayDate"></span>
+      </div>
+
+      <button id="notificationBtn" class="icon-btn">
+        <i class="fas fa-bell"></i>
+      </button>
+
+    </header>
+
+    <!-- Dashboard Stats -->
+
+    <section id="dashboardStats" class="stats-grid">
+
+      <div class="stat-card">
+        <i class="fas fa-users"></i>
+        <h3 id="totalWorkers">0</h3>
+        <p>Total Workers</p>
+      </div>
+
+      <div class="stat-card">
+        <i class="fas fa-user-check"></i>
+        <h3 id="activeWorkers">0</h3>
+        <p>Active</p>
+      </div>
+
+      <div class="stat-card">
+        <i class="fas fa-money-bill-wave"></i>
+        <h3 id="todayAdvance">₹0</h3>
+        <p>Today's Advance</p>
+      </div>
+
+      <div class="stat-card">
+        <i class="fas fa-chart-line"></i>
+        <h3 id="monthlyAdvance">₹0</h3>
+        <p>Monthly Advance</p>
+      </div>
+
+    </section>
+
+    <!-- AI Insights -->
+
+    <section class="glass-card">
+
+      <div class="section-title">
+        <i class="fas fa-brain"></i>
+        AI Insights
+      </div>
+
+      <div id="aiInsights">
+
+        <div class="ai-card">
+          Waiting for analysis...
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Main Content -->
+
+    <main id="mainContent">
+
+    </main>
+
+    <!-- Floating Action Button -->
+
+    <button id="fabBtn" class="fab-btn">
+      <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Bottom Navigation -->
+
+    <nav class="bottom-nav" id="bottomNav">
+
+      <button class="nav-item active"
+        data-page="dashboard">
+
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+
+      </button>
+
+      <button class="nav-item"
+        data-page="workers">
+
+        <i class="fas fa-users"></i>
+        <span>Workers</span>
+
+      </button>
+
+      <button class="nav-item"
+        data-page="attendance">
+
+        <i class="fas fa-calendar-check"></i>
+        <span>Attendance</span>
+
+      </button>
+
+      <button class="nav-item"
+        data-page="advance">
+
+        <i class="fas fa-wallet"></i>
+        <span>Advance</span>
+
+      </button>
+
+      <button class="nav-item"
+        data-page="reports">
+
+        <i class="fas fa-chart-bar"></i>
+        <span>Reports</span>
+
+      </button>
+
+    </nav>
+
+  </div>
+
+  <!-- Global Modal -->
+
+  <div id="globalModal"
+    class="modal hidden">
+
+    <div class="modal-content">
+
+      <div id="modalBody">
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+
+  <div id="toastContainer">
+
+  </div>
+
+  <!-- Scripts -->
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="app.js"></script>
+
+</body>
+
+</html>
